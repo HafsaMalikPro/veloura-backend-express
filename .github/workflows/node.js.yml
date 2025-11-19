@@ -41,9 +41,6 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Ensure Prisma v6
-        run: npm install prisma@6 @prisma/client@6 --save-dev
-
       - name: Generate Prisma Client
         run: npx prisma generate
 
