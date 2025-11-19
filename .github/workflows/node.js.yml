@@ -49,14 +49,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Ensure correct Prisma version
+      - name: Ensure Prisma 6
         run: npm install prisma@6 @prisma/client@6 --save-dev
 
       - name: Generate Prisma Client
-        run: npx prisma generate
+        run: npm run generate  # uses "npx prisma generate" from package.json
 
       - name: Run Prisma Migrations
-        run: npx prisma migrate deploy
+        run: npm run migrate   # uses "npx prisma migrate deploy" from package.json
 
       - name: Build TypeScript
         run: npm run build
