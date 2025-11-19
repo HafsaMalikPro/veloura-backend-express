@@ -32,6 +32,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
@@ -40,6 +48,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Ensure correct Prisma version
+        run: npm install prisma@6 @prisma/client@6 --save-dev
 
       - name: Generate Prisma Client
         run: npx prisma generate
