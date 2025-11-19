@@ -47,7 +47,7 @@
     "zod": "^4.1.12"
   },
   "devDependencies": {
-    "@prisma/client": "^6.17.1",
+    "@prisma/client": "^7.0.0",
     "@types/bcrypt": "^6.0.0",
     "@types/compression": "^1.8.1",
     "@types/cors": "^2.8.19",
@@ -67,7 +67,7 @@
     "jest": "^30.2.0",
     "nodemon": "^3.1.10",
     "prettier": "^3.6.2",
-    "prisma": "^6.17.1",
+    "prisma": "^7.0.0",
     "rimraf": "^6.0.1",
     "supertest": "^7.1.4",
     "ts-jest": "^29.4.5",
