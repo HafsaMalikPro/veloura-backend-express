@@ -10,6 +10,24 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    env:
+      NODE_ENV: ${{ secrets.NODE_ENV }}
+      PORT: ${{ secrets.PORT }}
+      SERVER_URL: ${{ secrets.SERVER_URL }}
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      REFRESH_TOKEN_SECRET: ${{ secrets.REFRESH_TOKEN_SECRET }}
+      JWT_EXPIRY: ${{ secrets.JWT_EXPIRY }}
+      REFRESH_TOKEN_EXPIRY: ${{ secrets.REFRESH_TOKEN_EXPIRY }}
+      FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
+      PROMETHEUS_URL: ${{ secrets.PROMETHEUS_URL }}
+      SMTP_HOST: ${{ secrets.SMTP_HOST }}
+      SMTP_PORT: ${{ secrets.SMTP_PORT }}
+      SMTP_USER: ${{ secrets.SMTP_USER }}
+      SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+      SMTP_FROM: ${{ secrets.SMTP_FROM }}
+      APP_NAME: ${{ secrets.APP_NAME }}
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -26,13 +44,11 @@ jobs:
       - name: Generate Prisma Client
         run: npx prisma generate
 
-      # agar tum migrations chalana chahti ho to uncomment karo
       - name: Run Prisma Migrations
         run: npx prisma migrate deploy
 
       - name: Build TypeScript
         run: npm run build
 
-      # agar tests nahi hain to comment kar do
       - name: Run Tests
         run: npm test
